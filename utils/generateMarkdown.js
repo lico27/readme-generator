@@ -39,7 +39,8 @@ ${data.tests}
 
 <a id="questions"></a>
 ## Any questions?
-Please contact me at ${data.github} or ${data.email}.
+Please contact me at GitHub [@${data.github}](https://github.com/${data.github}/)
+or ${data.email}.
 
 `;
   };

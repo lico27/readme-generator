@@ -68,13 +68,15 @@ const questions = [
 // function to initialize program
 function init() {
     let data;
+    let fileName;
 
     inquirer.prompt(questions)
         .then((userData) => {
             data = userData;
-            return writeFileAsync(`${data.title}.md`, generateMarkdown(data));
+            fileName = `${data.title.toLowerCase().split(' ').join('')}`;
+            return writeFileAsync(fileName + ".md", generateMarkdown(data));
         })
-        .then(() => console.log('Successfully wrote to ' + `${data.title}.md`))
+        .then(() => console.log("Successfully wrote to " + fileName + ".md"))
         .catch((err) => console.error(err));
 }
 
