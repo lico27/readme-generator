@@ -1,6 +1,10 @@
 const fs = require("fs");
 const path = require('path');
 const inquirer = require("inquirer");
+const generateMarkdown = require("./utils/generateMarkdown");
+const util = require('util');
+
+const writeFileAsync = util.promisify(fs.writeFile);
 
 // array of questions for user
 const questions = [
@@ -9,64 +13,65 @@ const questions = [
         name: 'title',
         message: 'Project title',
     },
-    {
-        type: 'input',
-        name: 'description',
-        message: 'Description of project',
-    },
-    {
-        type: 'input',
-        name: 'installation',
-        message: 'Installation instructions',
-    },
-    {
-        type: 'input',
-        name: 'usage',
-        message: 'How to use the project',
-    },
-    {
-        type: 'list',
-        name: 'license',
-        message: 'How to use the project',
-        choices: [
-            'MIT',
-            'GNU',
-            'Apache',
-            'BSD',
-            'Mozilla',
-            'Eclipse',
-            'Creative Commons',
-            'Unlicense',
-        ]
-    },
-    {
-        type: 'input',
-        name: 'credits',
-        message: 'Credits',
-    },
-    {
-        type: 'input',
-        name: 'tests',
-        message: 'Tests for your project',
-    },
-    {
-        type: 'input',
-        name: 'questions',
-        message: 'Contact details for questions',
-    },
+    // {
+    //     type: 'input',
+    //     name: 'description',
+    //     message: 'Description of project',
+    // },
+    // {
+    //     type: 'input',
+    //     name: 'installation',
+    //     message: 'Installation instructions',
+    // },
+    // {
+    //     type: 'input',
+    //     name: 'usage',
+    //     message: 'How to use the project',
+    // },
+    // {
+    //     type: 'list',
+    //     name: 'license',
+    //     message: 'Which license does your project use?',
+    //     choices: [
+    //         'MIT',
+    //         'GNU',
+    //         'Apache',
+    //         'BSD',
+    //         'Mozilla',
+    //         'Eclipse',
+    //         'Creative Commons',
+    //         'Unlicense',
+    //     ]
+    // },
+    // {
+    //     type: 'input',
+    //     name: 'contributing',
+    //     message: 'How can others contribute?',
+    // },
+    // {
+    //     type: 'input',
+    //     name: 'tests',
+    //     message: 'Tests for your project',
+    // },
+    // {
+    //     type: 'input',
+    //     name: 'github',
+    //     message: 'Your GitHub profile',
+    // },
+    // {
+    //     type: 'input',
+    //     name: 'email',
+    //     message: 'Your email address',
+    // },
 ];
 
 // function to initialize program
 function init() {
-    inquirer
-    .prompt(questions)
-    .then((data) => {
-        const readmeTitle = `${data.title.toLowerCase().split(' ').join('')}.md`;
-        fs.writeFile(readmeTitle, JSON.stringify(data, null, '\t'), (err) =>
-          err ? console.log(err) : console.log('Success!')
-        );
-      });
-};
+    inquirer.prompt(questions)
+        .then((data) => writeFileAsync(`${questions.title}.md`, generateMarkdown(data)))
+        .then(() => console.log('Successfully wrote to ' + `${questions.title}.md`))
+        .catch((err) => console.error(err));
+    };
 
 // // function call to initialize program
 init();
