@@ -13,65 +13,70 @@ const questions = [
         name: 'title',
         message: 'Project title',
     },
-    // {
-    //     type: 'input',
-    //     name: 'description',
-    //     message: 'Description of project',
-    // },
-    // {
-    //     type: 'input',
-    //     name: 'installation',
-    //     message: 'Installation instructions',
-    // },
-    // {
-    //     type: 'input',
-    //     name: 'usage',
-    //     message: 'How to use the project',
-    // },
-    // {
-    //     type: 'list',
-    //     name: 'license',
-    //     message: 'Which license does your project use?',
-    //     choices: [
-    //         'MIT',
-    //         'GNU',
-    //         'Apache',
-    //         'BSD',
-    //         'Mozilla',
-    //         'Eclipse',
-    //         'Creative Commons',
-    //         'Unlicense',
-    //     ]
-    // },
-    // {
-    //     type: 'input',
-    //     name: 'contributing',
-    //     message: 'How can others contribute?',
-    // },
-    // {
-    //     type: 'input',
-    //     name: 'tests',
-    //     message: 'Tests for your project',
-    // },
-    // {
-    //     type: 'input',
-    //     name: 'github',
-    //     message: 'Your GitHub profile',
-    // },
-    // {
-    //     type: 'input',
-    //     name: 'email',
-    //     message: 'Your email address',
-    // },
+    {
+        type: 'input',
+        name: 'description',
+        message: 'Description of project',
+    },
+    {
+        type: 'input',
+        name: 'installation',
+        message: 'Installation instructions',
+    },
+    {
+        type: 'input',
+        name: 'usage',
+        message: 'How to use the project',
+    },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'Which license does your project use?',
+        choices: [
+            'MIT',
+            'GNU',
+            'Apache',
+            'BSD',
+            'Mozilla',
+            'Eclipse',
+            'Creative Commons',
+            'Unlicense',
+        ]
+    },
+    {
+        type: 'input',
+        name: 'contributing',
+        message: 'How can others contribute?',
+    },
+    {
+        type: 'input',
+        name: 'tests',
+        message: 'Tests for your project',
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Your GitHub profile',
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Your email address',
+    },
 ];
 
 // function to initialize program
 function init() {
-    inquirer.prompt(questions)
-        .then((data) => writeFileAsync(`${questions.title}.md`, generateMarkdown(data)))
-        .then(() => console.log('Successfully wrote to ' + `${questions.title}.md`))
-        .catch((err) => console.error(err));
-    };
+    let data;
 
-// // function call to initialize program
+    inquirer.prompt(questions)
+        .then((userData) => {
+            data = userData;
+            return writeFileAsync(`${data.title}.md`, generateMarkdown(data));
+        })
+        .then(() => console.log('Successfully wrote to ' + `${data.title}.md`))
+        .catch((err) => console.error(err));
+}
+
+// function call to initialize program
 init();
