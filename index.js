@@ -19,16 +19,6 @@ const questions = [
         message: 'Description of project',
     },
     {
-        type: 'input',
-        name: 'installation',
-        message: 'Installation instructions',
-    },
-    {
-        type: 'input',
-        name: 'usage',
-        message: 'How to use the project',
-    },
-    {
         type: 'list',
         name: 'license',
         message: 'Which license does your project use?',
@@ -42,6 +32,16 @@ const questions = [
             'Creative Commons',
             'Unlicense',
         ]
+    },
+    {
+        type: 'input',
+        name: 'installation',
+        message: 'Installation instructions',
+    },
+    {
+        type: 'input',
+        name: 'usage',
+        message: 'How to use the project',
     },
     {
         type: 'input',
