@@ -1,7 +1,7 @@
 # README Generator
 
 ## Description
-A CLI to generate a high quality README.md for the user's project.
+A CLI app to generate a high quality README.md for the user's project.
 
 ### Project Deliverables
 - Built inquirer function to prompt user for information about their project
