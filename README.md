@@ -16,6 +16,9 @@ Install using node.js.
 ### Usage
 The app can be run inside node/terminal (node index.js) and the JavaScript can be viewed in the repository at /index.js and /utils/generateMarkdown.js.
 
+#### Walkthrough video
+A video explaining how to use the app can be found [here](https://www.loom.com/share/84d6cff1494f45ac92557c8f815d37b9?sid=3e4394fb-8ea3-45e4-826a-a7a0c39f0d72)
+
 ## Credits
 JavaScript coded by Liam Cottrell with file structures provided by edX Front-End Dev Bootcamp. 
 
